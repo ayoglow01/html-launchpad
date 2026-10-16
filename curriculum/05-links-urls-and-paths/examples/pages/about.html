@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Paths playground</title>
+</head>
+<body>
+  <header>
+    <!-- One level deeper than index.html, so one extra ../ -->
+    <img src="../../../../assets/images/logo.svg" alt="html-cracker" width="240" height="60">
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../index.html">Home (up one folder)</a></li>
+        <li><a href="about.html" aria-current="page">About (same folder)</a></li>
+        <li><a href="team/members.html">Team (down one folder)</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>About</h1>
+    <p>This page lives in <code>pages/</code>. Every path here is relative to <em>this</em> file's location.</p>
+    <section id="history">
+      <h2>History</h2>
+      <p>You reached this section with a fragment link from another page: <code>pages/about.html#history</code>.</p>
+    </section>
+  </main>
+</body>
+</html>

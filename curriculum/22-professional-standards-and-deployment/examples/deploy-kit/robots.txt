@@ -1,0 +1,5 @@
+# Controls crawling, not indexing. Public file: never list secret URLs.
+User-agent: *
+Disallow: /drafts/
+
+Sitemap: https://example.com/sitemap.xml

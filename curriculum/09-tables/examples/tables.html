@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tables — html-cracker</title>
+</head>
+<body>
+  <h1>Tables</h1>
+
+  <h2>Simple data table</h2>
+  <table border="1">
+    <caption>Q3 exam results, Class 2B</caption>
+    <thead>
+      <tr>
+        <th scope="col">Student</th>
+        <th scope="col">Maths</th>
+        <th scope="col">English</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Chidi</th>
+        <td>85</td>
+        <td>78</td>
+      </tr>
+      <tr>
+        <th scope="row">Amaka</th>
+        <td>92</td>
+        <td>88</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row">Average</th>
+        <td>88.5</td>
+        <td>83</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <h2>Spanning cells</h2>
+  <table border="1">
+    <caption>Workshop timetable</caption>
+    <thead>
+      <tr>
+        <th scope="col">Day</th>
+        <th scope="col">Time</th>
+        <th scope="col">Session</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" rowspan="2">Monday</th>
+        <td>09:00</td>
+        <td>Semantic HTML</td>
+      </tr>
+      <tr>
+        <td>13:00</td>
+        <td>Forms</td>
+      </tr>
+      <tr>
+        <th scope="row">Tuesday</th>
+        <td colspan="2">Project day (all day)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Complex table with headers and id</h2>
+  <section aria-labelledby="sales-caption" tabindex="0">
+    <table border="1">
+      <caption id="sales-caption">Sales by region and quarter (₦ millions)</caption>
+      <colgroup>
+        <col>
+        <col span="2">
+      </colgroup>
+      <thead>
+        <tr>
+          <td></td>
+          <th id="q1" scope="col">Q1</th>
+          <th id="q2" scope="col">Q2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th id="north" colspan="3" scope="colgroup">North</th>
+        </tr>
+        <tr>
+          <th id="kano" headers="north" scope="row">Kano</th>
+          <td headers="north kano q1">12</td>
+          <td headers="north kano q2">15</td>
+        </tr>
+        <tr>
+          <th id="kaduna" headers="north" scope="row">Kaduna</th>
+          <td headers="north kaduna q1">9</td>
+          <td headers="north kaduna q2">11</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th id="south" colspan="3" scope="colgroup">South</th>
+        </tr>
+        <tr>
+          <th id="lagos" headers="south" scope="row">Lagos</th>
+          <td headers="south lagos q1">31</td>
+          <td headers="south lagos q2">36</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</body>
+</html>

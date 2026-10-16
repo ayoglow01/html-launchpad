@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility — Debug 08 solution</title>
+  <style>
+    :focus-visible { outline: 3px solid #e44d26; outline-offset: 2px; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .fine-print { color: #595959; } /* 7:1 on white */
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main">
+      <button type="button" id="menu-btn" aria-expanded="false" aria-controls="menu">
+        <span aria-hidden="true">☰</span> Menu
+      </button>
+      <ul id="menu" hidden>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Newsletter</h1>
+    <button type="button" id="join">Join the newsletter</button>
+    <p id="msg" role="status"></p>
+    <button type="button">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="black"/></svg>
+      <span class="visually-hidden">Close</span>
+    </button>
+    <a href="posts/accessibility-basics.html">Read more about accessibility basics</a>
+    <p class="fine-print">Fine print in a grey that passes contrast.</p>
+    <h2>Latest posts</h2>
+  </main>
+  <script>
+    const btn = document.getElementById("menu-btn");
+    const menu = document.getElementById("menu");
+    btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      menu.hidden = open;
+    });
+    document.getElementById("join").addEventListener("click", () => {
+      document.getElementById("msg").textContent = "Thanks! Check your inbox to confirm.";
+    });
+  </script>
+</body>
+</html>

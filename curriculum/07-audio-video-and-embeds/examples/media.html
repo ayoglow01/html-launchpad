@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audio, video and embeds — html-cracker</title>
+</head>
+<body>
+  <h1>Audio, video and embeds</h1>
+  <p><strong>Serve this file over http://</strong> (Live Server, <code>python3 -m http.server</code>, or <code>npx serve</code>) or the captions will not load in Chrome.</p>
+
+  <h2>Video with captions, subtitles and chapters</h2>
+  <video controls width="640" height="360" preload="metadata" poster="../../../assets/images/video-poster.jpg">
+    <source src="../../../assets/media/sample-video.webm" type="video/webm">
+    <source src="../../../assets/media/sample-video.mp4" type="video/mp4">
+    <track kind="captions" src="../../../assets/media/captions-en.vtt" srclang="en" label="English (captions)" default>
+    <track kind="subtitles" src="../../../assets/media/subtitles-fr.vtt" srclang="fr" label="Français">
+    <track kind="chapters" src="../../../assets/media/chapters-en.vtt" srclang="en" label="Chapters">
+    <p>Your browser cannot play this video. <a href="../../../assets/media/sample-video.mp4">Download the MP4 (330 KB)</a>.</p>
+  </video>
+  <p>Open the CC menu in the player and switch between tracks. Compare the English captions (with sound cues) to the French subtitles (speech only).</p>
+
+  <h2>Audio with a transcript</h2>
+  <audio controls preload="metadata">
+    <source src="../../../assets/media/sample-audio.ogg" type="audio/ogg">
+    <source src="../../../assets/media/sample-audio.mp3" type="audio/mpeg">
+    <p>Your browser cannot play this audio. <a href="../../../assets/media/sample-audio.mp3">Download the MP3</a>.</p>
+  </audio>
+  <details>
+    <summary>Transcript</summary>
+    <p>[A steady high-pitched tone plays for six seconds.]</p>
+  </details>
+
+  <h2>Muted, looping background-style video</h2>
+  <!-- Muted autoplay is the one case browsers allow; html-validate flags autoplay by default. -->
+  <!-- [html-validate-disable-next no-autoplay] -->
+  <video id="bg-video" autoplay muted loop playsinline width="320" height="180" aria-hidden="true">
+    <source src="../../../assets/media/sample-video.webm" type="video/webm">
+    <source src="../../../assets/media/sample-video.mp4" type="video/mp4">
+  </video>
+  <p><button type="button" id="bg-toggle" aria-pressed="false">Pause animation</button></p>
+  <p>No native controls are shown, so a visible pause button is required (WCAG 2.2.2 Pause, Stop, Hide).</p>
+  <script>
+    const bgVideo = document.getElementById("bg-video");
+    const bgToggle = document.getElementById("bg-toggle");
+    bgToggle.addEventListener("click", () => {
+      if (bgVideo.paused) { bgVideo.play(); bgToggle.textContent = "Pause animation"; bgToggle.setAttribute("aria-pressed", "false"); }
+      else { bgVideo.pause(); bgToggle.textContent = "Play animation"; bgToggle.setAttribute("aria-pressed", "true"); }
+    });
+  </script>
+
+  <h2>Sandboxed iframe using srcdoc</h2>
+  <iframe
+    title="Sandboxed demo document"
+    width="400" height="120"
+    sandbox
+    srcdoc="&lt;p&gt;I am a separate document. Scripts, forms and popups are disabled here.&lt;/p&gt;">
+  </iframe>
+
+  <h2>Third-party embed (needs internet)</h2>
+  <iframe
+    src="https://www.openstreetmap.org/export/embed.html?bbox=3.37%2C6.42%2C3.43%2C6.46&amp;layer=mapnik"
+    title="Map of Lagos Island, Nigeria"
+    width="400" height="300"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin">
+  </iframe>
+  <p><a href="https://www.openstreetmap.org/#map=14/6.44/3.40">View larger map on OpenStreetMap</a></p>
+</body>
+</html>

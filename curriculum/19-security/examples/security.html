@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- CSP first, so it covers everything after it. Inline scripts and inline event handlers are blocked. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Security — html-cracker</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.5; max-width: 65ch; margin: 2rem auto; padding: 0 1rem; }
+    output { display: block; border: 1px solid #ccc; padding: .5rem; min-height: 2rem; }
+  </style>
+  <script src="js/security-demo.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Security demo</h1>
+    <p>Open DevTools &gt; Console to see CSP violation messages.</p>
+
+    <h2>1. textContent vs innerHTML</h2>
+    <p>Paste this payload, then try both buttons:</p>
+    <pre><code>&lt;img src=x onerror="document.body.style.background='red'"&gt;</code></pre>
+    <label for="payload">Untrusted input</label>
+    <input type="text" id="payload" name="payload" size="50">
+    <p>
+      <button type="button" id="safe">Insert with textContent (safe)</button>
+      <button type="button" id="unsafe">Insert with innerHTML (unsafe)</button>
+    </p>
+    <output id="result" for="payload"></output>
+    <p>With <code>innerHTML</code> the image element is created. The page doesn't turn red only because the CSP blocks inline event handlers — defence in depth. Remove the CSP meta tag and try again.</p>
+
+    <h2>2. Inline script and handler (both blocked by CSP)</h2>
+    <button type="button" onclick="alert('This should never run')">Inline onclick (blocked)</button>
+    <script>
+      document.title = "If you see this title, inline scripts ran";
+    </script>
+
+    <h2>3. Links to other sites</h2>
+    <p><a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">OWASP (new tab, no opener, no referrer)</a></p>
+
+    <h2>4. Login form done right</h2>
+    <form action="security.html" method="post">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required>
+      <button type="submit">Sign in</button>
+    </form>
+    <p>POST keeps the password out of the URL. Autocomplete tokens help password managers. (This static page can't actually process POST.)</p>
+  </main>
+</body>
+</html>

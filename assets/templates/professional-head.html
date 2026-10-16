@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Replace every example.com URL and every placeholder text. Delete lines you don't need — and know why each remaining line is there. -->
+<html lang="en">
+
+<head>
+  <!-- 1. Encoding: first, within the first 1024 bytes. -->
+  <meta charset="UTF-8">
+
+  <!-- 2. Mobile layout. Never add maximum-scale or user-scalable=no. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- 3. Security policy (only if you can't send it as an HTTP header; frame-ancestors won't work here). -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+
+  <!-- 4. Title and description: unique per page. -->
+  <title>Specific page topic — Site name</title>
+  <meta name="description" content="One or two sentences summarising this page for search results.">
+
+  <!-- 5. Preferred URL (absolute) and translations. -->
+  <link rel="canonical" href="https://example.com/page/">
+  <!-- <link rel="alternate" hreflang="fr" href="https://example.com/fr/page/"> -->
+
+  <!-- 6. Icons and install metadata. -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#e44d26">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- 7. Social previews: Open Graph uses property=, X uses name=. Absolute URLs. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Site name">
+  <meta property="og:title" content="Specific page topic — Site name">
+  <meta property="og:description" content="One or two sentences for the share card.">
+  <meta property="og:url" content="https://example.com/page/">
+  <meta property="og:image" content="https://example.com/og-image.jpg">
+  <meta property="og:image:alt" content="Describe the share image">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- 8. Performance hints: only for resources you KNOW are critical. -->
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+  <!-- <link rel="preload" href="/fonts/brand.woff2" as="font" type="font/woff2" crossorigin> -->
+
+  <!-- 9. Styles, then scripts (deferred). -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/main.js" defer></script>
+
+  <!-- 10. Structured data (must match visible content). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Specific page topic",
+    "url": "https://example.com/page/"
+  }
+  </script>
+</head>
+
+<body>
+  <h1>Specific page topic</h1>
+</body>
+
+</html>

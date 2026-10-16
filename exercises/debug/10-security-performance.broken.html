@@ -1,0 +1,30 @@
+<!-- DEBUG 10 · Security & performance · After Module 20 · 13 problems -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout — Debug 10</title>
+  <script src="https://cdn.example.com/lib@latest/lib.min.js" integrity="sha384-abc123"></script>
+  <script src="app.js"></script>
+  <link rel="preload" href="../../assets/fonts/inter.woff2" as="font">
+  <meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'none'">
+</head>
+<body>
+  <img src="../../assets/images/hero-1200.jpg" alt="Shoppers at a Lagos market" loading="lazy">
+  <form action="/checkout" method="get">
+    <input type="hidden" name="price" value="12500">
+    <label for="card">Card number</label>
+    <input type="text" id="card" name="card" inputmode="numeric" autocomplete="cc-number">
+    <button type="submit">Pay ₦12,500</button>
+  </form>
+  <p id="greet"></p>
+  <script>
+    // API key for the payment provider
+    const SECRET_KEY = "sk_live_51HxYz...";
+    const name = new URLSearchParams(location.search).get("name");
+    document.getElementById("greet").innerHTML = "Hello " + name;
+  </script>
+  <img src="../../assets/images/project-one.jpg" alt="Featured product">
+</body>
+</html>

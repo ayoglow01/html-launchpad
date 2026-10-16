@@ -1,0 +1,10 @@
+group,subgroup,name,mass_1e24kg,diameter_km,density_kg_m3,gravity_m_s2,day_hours,distance_from_sun_1e6km,mean_temp_c,moons,notes
+Terrestrial planets,,Mercury,0.330,4879,5429,3.7,4222.6,57.9,167,0,Closest to the Sun
+Terrestrial planets,,Venus,4.87,12104,5243,8.9,2802.0,108.2,464,0,Hottest planet
+Terrestrial planets,,Earth,5.97,12756,5514,9.8,24.0,149.6,15,1,Our world
+Terrestrial planets,,Mars,0.642,6792,3934,3.7,24.7,228.0,-65,2,The red planet
+Jovian planets,Gas giants,Jupiter,1898,142984,1326,23.1,9.9,778.5,-110,95,The largest planet
+Jovian planets,Gas giants,Saturn,568,120536,687,9.0,10.7,1432.0,-140,274,Famous for its rings
+Jovian planets,Ice giants,Uranus,86.8,51118,1270,8.7,17.2,2867.0,-195,28,Rotates on its side
+Jovian planets,Ice giants,Neptune,102,49528,1638,11.0,16.1,4515.0,-200,16,Strongest winds
+Dwarf planets,,Pluto,0.0130,2376,1850,0.7,153.3,5906.4,-225,5,Reclassified in 2006

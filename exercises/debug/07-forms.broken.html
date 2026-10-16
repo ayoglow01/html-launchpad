@@ -1,0 +1,42 @@
+<!-- DEBUG 07 · Forms · After Module 11 · 12 problems -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forms — Debug 07</title>
+</head>
+<body>
+  <h1>Create an account</h1>
+  <form action="/register" method="get">
+    <input type="text" placeholder="Full name" name="name">
+
+    <label for="email">Email</label>
+    <input type="text" id="e-mail" name="email">
+
+    <label for="phone">Phone</label>
+    <input type="number" id="phone" name="phone">
+
+    <label for="pw">Password</label>
+    <input type="password" id="pw" name="password" autocomplete="off">
+
+    <label for="state">State</label>
+    <select id="state" name="state" required>
+      <option>Lagos</option>
+      <option>Kano</option>
+    </select>
+
+    <p>Gender</p>
+    <input type="radio" name="g1" value="f" id="f"><label for="f">Female</label>
+    <input type="radio" name="g2" value="m" id="m"><label for="m">Male</label>
+
+    <label for="bio">Bio</label>
+    <input type="textarea" id="bio" name="bio">
+
+    <label><input type="checkbox"> I accept the terms</label>
+
+    <button>Register</button>
+    <button>Clear</button>
+  </form>
+</body>
+</html>

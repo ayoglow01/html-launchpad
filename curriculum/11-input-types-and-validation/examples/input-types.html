@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All 22 input types — html-cracker</title>
+</head>
+<body>
+  <main>
+    <h1>All 22 input types</h1>
+    <p>Open this page on a phone too: notice the different keyboards.</p>
+    <form action="input-types.html" method="get">
+      <fieldset>
+        <legend>Text-like</legend>
+        <p><label for="t-text">text</label> <input id="t-text" name="text" type="text"></p>
+        <p><label for="t-email">email</label> <input id="t-email" name="email" type="email" autocomplete="email"></p>
+        <p><label for="t-password">password</label> <input id="t-password" name="password" type="password" autocomplete="new-password"></p>
+        <p><label for="t-tel">tel</label> <input id="t-tel" name="tel" type="tel" autocomplete="tel"></p>
+        <p><label for="t-url">url</label> <input id="t-url" name="url" type="url" placeholder="https://example.com"></p>
+        <p><label for="t-search">search</label> <input id="t-search" name="search" type="search"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Numbers</legend>
+        <p><label for="t-number">number (step 0.5)</label> <input id="t-number" name="number" type="number" min="0" max="10" step="0.5"></p>
+        <p><label for="t-range">range</label> <input id="t-range" name="range" type="range" min="0" max="10" value="5"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Date and time</legend>
+        <p><label for="t-date">date</label> <input id="t-date" name="date" type="date"></p>
+        <p><label for="t-time">time</label> <input id="t-time" name="time" type="time"></p>
+        <p><label for="t-dtl">datetime-local</label> <input id="t-dtl" name="datetimeLocal" type="datetime-local"></p>
+        <p><label for="t-month">month</label> <input id="t-month" name="month" type="month"></p>
+        <p><label for="t-week">week</label> <input id="t-week" name="week" type="week"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Choices</legend>
+        <p><label><input name="checkbox" type="checkbox" value="yes"> checkbox</label></p>
+        <p><label><input name="radio" type="radio" value="a" checked> radio A</label>
+           <label><input name="radio" type="radio" value="b"> radio B</label></p>
+        <p><label for="t-color">color</label> <input id="t-color" name="color" type="color" value="#e44d26"></p>
+        <p><label for="t-file">file (GET sends only the file name)</label> <input id="t-file" name="file" type="file"></p>
+        <input name="hidden" type="hidden" value="visible-in-source">
+      </fieldset>
+
+      <fieldset>
+        <legend>Buttons</legend>
+        <!-- <button> is preferred; these input buttons are shown for completeness. -->
+        <!-- [html-validate-disable-block prefer-button] -->
+        <input type="submit" value="submit">
+        <input type="reset" value="reset">
+        <input type="button" value="button (does nothing)">
+        <input type="image" name="imgSubmit" src="../../../assets/images/favicon.svg" alt="Submit with image" width="32" height="32">
+      </fieldset>
+    </form>
+  </main>
+</body>
+</html>

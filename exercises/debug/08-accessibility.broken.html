@@ -1,0 +1,37 @@
+<!-- DEBUG 08 · Accessibility · After Module 12 · 11 problems -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility — Debug 08</title>
+  <style>
+    *:focus { outline: none; }
+    .menu-btn { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <ul id="menu" style="display:none">
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1>Newsletter</h1>
+    <button type="button" aria-label="Subscribe now"><span>Join</span></button>
+    <p id="msg" role="alert" hidden></p>
+    <button type="button"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M6 6l12 12M18 6L6 18" stroke="black"/></svg></button>
+    <a href="#" tabindex="5">Read more</a>
+    <div role="button" aria-hidden="true" tabindex="0">Close</div>
+    <p style="color:#bbb">Fine print in very light grey on white.</p>
+    <h3>Latest posts</h3>
+  </div>
+  <script>
+    function toggleMenu() {
+      const m = document.getElementById("menu");
+      m.style.display = m.style.display === "none" ? "block" : "none";
+    }
+  </script>
+</body>
+</html>

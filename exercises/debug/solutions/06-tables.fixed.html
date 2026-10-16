@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tables — Debug 06 solution</title>
+  <style>
+    table { border-collapse: collapse; }
+    th, td { border: 1px solid #999; padding: 5px; }
+    .welcome { display: flex; gap: 1rem; align-items: center; }
+  </style>
+</head>
+<body>
+  <h1>Exam results</h1>
+  <table>
+    <caption>Exam results for Class 3B</caption>
+    <thead>
+      <tr>
+        <th scope="col">Student</th>
+        <th scope="col">Maths</th>
+        <th scope="col">English</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Amina</th>
+        <td>78</td>
+        <td>85</td>
+      </tr>
+      <tr>
+        <th scope="row">Tunde</th>
+        <td colspan="2">Absent</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="welcome">
+    <img src="../../../assets/images/avatar.jpg" alt="" width="100" height="100">
+    <p>Our principal welcomes you.</p>
+  </div>
+</body>
+</html>

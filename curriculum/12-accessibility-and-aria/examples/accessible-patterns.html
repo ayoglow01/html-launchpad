@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessible patterns — html-cracker</title>
+  <style>
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+      overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+    }
+    .skip-link { position: absolute; left: -9999px; }
+    .skip-link:focus { left: 1rem; top: 1rem; background: #fff; padding: .5rem; }
+    :focus-visible { outline: 3px solid #e44d26; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <p><b>html-cracker</b></p>
+    <nav aria-label="Primary">
+      <button type="button" aria-expanded="false" aria-controls="site-menu" id="menu-toggle">Menu</button>
+      <ul id="site-menu" hidden>
+        <li><a href="accessible-patterns.html" aria-current="page">Patterns</a></li>
+        <li><a href="../README.md">Lesson</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <h1>Accessible patterns</h1>
+    <p>Test this page with the keyboard only, then with a screen reader.</p>
+
+    <h2>1. Icon-only button</h2>
+    <button type="button">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <span class="visually-hidden">Close notification</span>
+    </button>
+
+    <h2>2. Link with extra context for screen readers</h2>
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener">
+        WCAG 2.2 Quick Reference<span class="visually-hidden"> (opens in new tab)</span>
+      </a>
+    </p>
+
+    <h2>3. Live region</h2>
+    <button type="button" id="save">Save draft</button>
+    <p role="status" id="status"></p>
+
+    <h2>4. Field with hint and error</h2>
+    <form action="accessible-patterns.html" method="get" novalidate id="signup">
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-hint email-error">
+      <p id="email-hint">We'll only use this to send your receipt.</p>
+      <p id="email-error"></p>
+      <button type="submit">Continue</button>
+    </form>
+
+    <h2>5. Toggle button state</h2>
+    <button type="button" aria-pressed="false" id="mute">Mute notifications</button>
+  </main>
+
+  <footer>
+    <p><small>&copy; 2026 html-cracker</small></p>
+  </footer>
+
+  <script>
+    // Menu disclosure: keep aria-expanded and hidden in sync.
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("site-menu");
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      menu.hidden = open;
+    });
+
+    // Live region: the element exists on load; we only change its text.
+    document.getElementById("save").addEventListener("click", () => {
+      document.getElementById("status").textContent = "Draft saved at " + new Date().toLocaleTimeString();
+    });
+
+    // Accessible error message: text, specific, connected, and focus moves to the field.
+    document.getElementById("signup").addEventListener("submit", (event) => {
+      const email = document.getElementById("email");
+      const error = document.getElementById("email-error");
+      if (!email.checkValidity()) {
+        event.preventDefault();
+        email.setAttribute("aria-invalid", "true");
+        error.textContent = "Error: enter an email address like name@example.com.";
+        email.focus();
+      } else {
+        email.removeAttribute("aria-invalid");
+        error.textContent = "";
+      }
+    });
+
+    // Toggle button: aria-pressed communicates state.
+    const mute = document.getElementById("mute");
+    mute.addEventListener("click", () => {
+      mute.setAttribute("aria-pressed", String(mute.getAttribute("aria-pressed") !== "true"));
+    });
+  </script>
+</body>
+</html>

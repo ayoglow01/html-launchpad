@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form basics: see what gets submitted — html-cracker</title>
+</head>
+<body>
+  <main>
+    <h1>See exactly what a form submits</h1>
+    <p>This form uses <code>method="get"</code> and submits to itself, so the data appears in the address bar and in the box below. (Real forms with personal data use <code>post</code> over HTTPS.)</p>
+
+    <section aria-labelledby="result-heading">
+      <h2 id="result-heading">Last submission</h2>
+      <output id="result" for="demo">Nothing submitted yet.</output>
+    </section>
+
+    <form id="demo" action="form-basics.html" method="get">
+      <fieldset>
+        <legend>Your details</legend>
+        <p>
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </p>
+        <p>
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </p>
+        <p>
+          <label for="member-id">Member ID (read-only, IS submitted)</label>
+          <input id="member-id" name="memberId" type="text" value="M-1042" readonly>
+        </p>
+        <p>
+          <label for="legacy">Legacy code (disabled, NOT submitted)</label>
+          <input id="legacy" name="legacyCode" type="text" value="OLD-77" disabled>
+        </p>
+        <p>
+          <label for="nickname">Nickname (no name attribute, NOT submitted)</label>
+          <input id="nickname" type="text">
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Plan</legend>
+        <label><input type="radio" name="plan" value="free" checked> Free</label>
+        <label><input type="radio" name="plan" value="pro"> Pro</label>
+      </fieldset>
+
+      <p>
+        <label><input type="checkbox" name="newsletter" value="yes"> Send me the newsletter (absent when unchecked)</label>
+      </p>
+      <p>
+        <label><input type="checkbox" name="noValue"> Checkbox without a value (sends "on")</label>
+      </p>
+
+      <p>
+        <label for="topic">Topic</label>
+        <select id="topic" name="topic" required>
+          <option value="">Choose a topic</option>
+          <optgroup label="Learning">
+            <option value="html">HTML</option>
+            <option value="a11y">Accessibility</option>
+          </optgroup>
+          <option>Other (no value attribute: text is sent)</option>
+        </select>
+      </p>
+
+      <p>
+        <label for="city">City (datalist: suggestions only)</label>
+        <input type="text" id="city" name="city" list="cities">
+        <datalist id="cities">
+          <option value="Lagos"></option>
+          <option value="Abuja"></option>
+          <option value="Ibadan"></option>
+        </datalist>
+      </p>
+
+      <p>
+        <label for="msg">Message</label>
+        <textarea id="msg" name="message" rows="4"></textarea>
+      </p>
+
+      <p>
+        <button type="submit" name="action" value="send">Send</button>
+        <button type="submit" name="action" value="draft" formnovalidate>Save draft (skips validation)</button>
+        <button type="button">Type="button": does nothing</button>
+      </p>
+    </form>
+  </main>
+
+  <script>
+    // Displays the query string as name=value lines. Not needed for the form to work.
+    const params = new URLSearchParams(location.search);
+    if ([...params].length) {
+      document.getElementById("result").textContent =
+        [...params].map(([k, v]) => `${k} = ${v}`).join("\n");
+      document.getElementById("result").style.whiteSpace = "pre";
+    }
+  </script>
+</body>
+</html>

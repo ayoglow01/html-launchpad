@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Media — Debug 05 solution</title>
+</head>
+<body>
+  <h1>Our campus</h1>
+  <img src="../../../assets/images/hero-1200.jpg" alt="Main campus entrance" width="1200" height="800" fetchpriority="high">
+  <a href="index.html"><img src="../../../assets/images/logo.svg" alt="Campus home" width="240" height="60"></a>
+  <img src="../../../assets/images/divider.svg" alt="" width="400" height="12">
+  <figure>
+    <img src="../../../assets/images/campus-map.png" alt="Campus map: library at the centre, labs to the north, hostels to the east" width="600" height="400">
+    <figcaption>Figure 1: Campus map</figcaption>
+  </figure>
+  <video controls width="640" height="360" preload="metadata">
+    <source src="../../../assets/media/sample-video.webm" type="video/webm">
+    <source src="../../../assets/media/sample-video.mp4" type="video/mp4">
+    <track kind="captions" src="../../../assets/media/captions-en.vtt" srclang="en" label="English" default>
+    <p>Your browser can't play this video. <a href="../../../assets/media/sample-video.mp4">Download it</a>.</p>
+  </video>
+  <audio controls src="../../../assets/media/sample-audio.mp3">
+    <a href="../../../assets/media/sample-audio.mp3">Download the audio</a>
+  </audio>
+  <details>
+    <summary>Audio transcript</summary>
+    <p>[A steady tone plays for six seconds.]</p>
+  </details>
+  <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="Campus tour video" width="560" height="315" loading="lazy" allowfullscreen></iframe>
+  <picture>
+    <source srcset="../../../assets/images/hero-800.webp" type="image/webp">
+    <img src="../../../assets/images/hero-800.jpg" alt="Students on the campus lawn" width="800" height="533" loading="lazy">
+  </picture>
+</body>
+</html>

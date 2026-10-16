@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Images — html-cracker</title>
+</head>
+<body>
+  <h1>Images</h1>
+
+  <h2>Hero: high priority, not lazy, responsive</h2>
+  <!-- Open DevTools > Network > Img, resize the window and reload: watch which file loads. -->
+  <picture>
+    <source
+      type="image/webp"
+      srcset="../../../assets/images/hero-480.webp 480w, ../../../assets/images/hero-800.webp 800w, ../../../assets/images/hero-1200.webp 1200w"
+      sizes="(max-width: 600px) 100vw, 800px">
+    <img
+      src="../../../assets/images/hero-800.jpg"
+      srcset="../../../assets/images/hero-480.jpg 480w, ../../../assets/images/hero-800.jpg 800w, ../../../assets/images/hero-1200.jpg 1200w"
+      sizes="(max-width: 600px) 100vw, 800px"
+      alt="html-cracker banner on an orange-to-blue gradient"
+      width="1200" height="800"
+      fetchpriority="high">
+  </picture>
+
+  <h2>Art direction: different crop on narrow screens</h2>
+  <picture>
+    <source media="(max-width: 600px)" srcset="../../../assets/images/hero-portrait-600.jpg">
+    <img src="../../../assets/images/hero-1200.jpg" alt="html-cracker banner" width="1200" height="800" loading="lazy">
+  </picture>
+
+  <h2>Figure with caption</h2>
+  <figure>
+    <img src="../../../assets/images/sales-chart.svg" alt="Bar chart: sales rose each month, with March the highest" width="320" height="200" loading="lazy">
+    <figcaption>Figure 1. Q1 sales by month (units).</figcaption>
+  </figure>
+
+  <h2>Decorative image</h2>
+  <img src="../../../assets/images/divider.svg" alt="" width="400" height="12">
+
+  <h2>Functional image (inside a link)</h2>
+  <a href="../../../README.md"><img src="../../../assets/images/logo.svg" alt="html-cracker home" width="240" height="60"></a>
+
+  <h2>Fixed-size image with density descriptors</h2>
+  <img src="../../../assets/images/avatar.jpg" srcset="../../../assets/images/avatar.jpg 2x" alt="Placeholder avatar" width="200" height="200" loading="lazy">
+
+  <h2>Image map</h2>
+  <p>Click a building. (Coordinates do not scale if CSS resizes the image.)</p>
+  <img src="../../../assets/images/campus-map.png" alt="Campus map with library, sports centre, and hostels" usemap="#campus" width="600" height="400" loading="lazy">
+  <map name="campus">
+    <area shape="rect" coords="20,20,280,180" href="#library" alt="Library">
+    <area shape="circle" coords="450,140,100" href="#sports" alt="Sports centre">
+    <area shape="poly" coords="60,380,300,230,540,380" href="#hostels" alt="Hostels">
+  </map>
+  <ul>
+    <li id="library">Library: open 8 am – 10 pm.</li>
+    <li id="sports">Sports centre: open 6 am – 9 pm.</li>
+    <li id="hostels">Hostels: visitors until 7 pm.</li>
+  </ul>
+</body>
+</html>

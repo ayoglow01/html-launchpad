@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; frame-src https://www.openstreetmap.org; form-action 'self' https://formspree.io; object-src 'none'; base-uri 'none'">
+  <title>Contact us — Kola &amp; Co.</title>
+  <meta name="description" content="Start a project with Kola &amp; Co. Call, email, visit our Victoria Island studio, or send a message.">
+  <link rel="canonical" href="https://kolaandco.example/contact.html">
+  <link rel="icon" href="images/favicon.ico" sizes="32x32">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0e405e">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kola &amp; Co.">
+  <meta property="og:title" content="Contact us — Kola &amp; Co.">
+  <meta property="og:description" content="Start a project with Kola &amp; Co. Call, email, visit our Victoria Island studio, or send a message.">
+  <meta property="og:url" content="https://kolaandco.example/contact.html">
+  <meta property="og:image" content="https://kolaandco.example/images/og-image.jpg">
+  <meta property="og:image:alt" content="Kola &amp; Co. design studio logo">
+  <meta property="og:locale" content="en_NG">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html"><img src="images/logo.svg" alt="Kola &amp; Co. home" width="200" height="48"></a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="container">
+    <h1>Contact us</h1>
+    <p class="lead">Tell us about your project. We reply within one working day.</p>
+
+    <!-- POST to a form service (replace YOUR_FORM_ID). Data travels over HTTPS and stays out of the URL. -->
+    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="post">
+      <div>
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="name-error" data-error="Enter your full name.">
+        <p class="error" id="name-error"></p>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-hint email-error" data-error="Enter an email address like name@example.com.">
+        <p class="hint" id="email-hint">We'll only use this to reply to you.</p>
+        <p class="error" id="email-error"></p>
+      </div>
+      <div>
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel">
+      </div>
+      <div>
+        <label for="service">Service</label>
+        <select id="service" name="service" required aria-describedby="service-error" data-error="Choose a service.">
+          <option value="">Choose a service</option>
+          <option value="brand">Brand identity</option>
+          <option value="website">Website</option>
+          <option value="audit">Accessibility audit</option>
+        </select>
+        <p class="error" id="service-error"></p>
+      </div>
+      <fieldset>
+        <legend>Budget</legend>
+        <label><input type="radio" name="budget" value="under-500k" checked> Under ₦500,000</label>
+        <label><input type="radio" name="budget" value="500k-1m"> ₦500,000–₦1,000,000</label>
+        <label><input type="radio" name="budget" value="over-1m"> Over ₦1,000,000</label>
+      </fieldset>
+      <div>
+        <label for="message">Project details</label>
+        <textarea id="message" name="message" rows="6" required minlength="20" aria-describedby="message-error" data-error="Tell us a little more (at least 20 characters)."></textarea>
+        <p class="error" id="message-error"></p>
+      </div>
+      <div>
+        <label><input type="checkbox" id="consent" name="consent" value="yes" required aria-describedby="consent-error" data-error="Please agree so we can reply to you."> I agree to Kola &amp; Co. storing these details to reply to my enquiry, as described in the <a href="privacy.html">privacy notice</a>.</label>
+        <p class="error" id="consent-error"></p>
+      </div>
+      <div>
+        <button class="button" type="submit">Send message</button>
+      </div>
+    </form>
+
+    <section aria-labelledby="hours-title">
+      <h2 id="hours-title">Studio hours</h2>
+      <table>
+        <caption class="visually-hidden">Opening hours (West Africa Time)</caption>
+        <tbody>
+          <tr><th scope="row">Monday–Friday</th><td><time datetime="09:00">9 am</time> – <time datetime="17:00">5 pm</time></td></tr>
+          <tr><th scope="row">Saturday</th><td><time datetime="10:00">10 am</time> – <time datetime="14:00">2 pm</time></td></tr>
+          <tr><th scope="row">Sunday</th><td>Closed</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="map-title">
+      <h2 id="map-title">Find us</h2>
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=3.410%2C6.425%2C3.430%2C6.437&amp;layer=mapnik" title="Map of Victoria Island, Lagos, showing the studio area" width="600" height="400" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <p><a href="https://www.openstreetmap.org/#map=17/6.431/3.420" target="_blank" rel="noopener">Open a larger map (opens in new tab)</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <section aria-labelledby="footer-contact">
+        <h2 id="footer-contact">Visit or call</h2>
+        <address>
+          Kola &amp; Co. Design Studio<br>
+          14 Adeola Odeku Street<br>
+          Victoria Island, Lagos<br>
+          <a href="tel:+2348030000000">+234&nbsp;803&nbsp;000&nbsp;0000</a><br>
+          <a href="mailto:hello@kolaandco.example">hello@kolaandco.example</a>
+        </address>
+      </section>
+      <nav aria-label="Footer">
+        <h2>More</h2>
+        <ul>
+          <li><a href="privacy.html" rel="privacy-policy">Privacy notice</a></li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram (opens in new tab)</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn (opens in new tab)</a></li>
+        </ul>
+      </nav>
+      <p><small>&copy; <time id="year" datetime="2026">2026</time> Kola &amp; Co. Design Studio. Built with semantic HTML.</small></p>
+    </div>
+  </footer>
+</body>
+</html>

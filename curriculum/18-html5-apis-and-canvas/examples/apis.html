@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML5 APIs and canvas — html-cracker</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.5; max-width: 65ch; margin: 2rem auto; padding: 0 1rem; }
+    canvas { border: 1px solid #ccc; width: 320px; height: 200px; }
+    .board { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .zone { min-height: 120px; border: 2px dashed #0e405e; padding: .5rem; }
+    .zone li { cursor: grab; }
+    #preview { max-width: 200px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>HTML5 APIs and canvas</h1>
+    <p>Serve this file from a local server (for example VS Code Live Server). Some APIs don't work from <code>file://</code>.</p>
+
+    <h2>1. Canvas (sharp on high-DPI screens)</h2>
+    <figure>
+      <canvas id="chart" width="320" height="200">
+        <p>Monthly sales: January ₦2m, February ₦3.5m, March ₦5m.</p>
+      </canvas>
+      <figcaption>Monthly sales, Q1 2026. The same data is in the table below.</figcaption>
+    </figure>
+    <table>
+      <caption>Q1 sales (millions of naira)</caption>
+      <thead><tr><th scope="col">Month</th><th scope="col">Sales</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">January</th><td>2</td></tr>
+        <tr><th scope="row">February</th><td>3.5</td></tr>
+        <tr><th scope="row">March</th><td>5</td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. localStorage</h2>
+    <label for="name">Your name (saved in this browser)</label>
+    <input type="text" id="name" name="name" autocomplete="given-name">
+    <p>Reload the page: the value comes back. It's stored as a string.</p>
+
+    <h2>3. Geolocation</h2>
+    <button type="button" id="locate">Show my location</button>
+    <p role="status" id="where"></p>
+
+    <h2>4. Drag and drop (with a keyboard alternative)</h2>
+    <div class="board">
+      <div>
+        <h3>To do</h3>
+        <ul class="zone" id="todo">
+          <li draggable="true" id="task-1">Write lesson <button type="button" class="move">Move</button></li>
+          <li draggable="true" id="task-2">Record video <button type="button" class="move">Move</button></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Done</h3>
+        <ul class="zone" id="done"></ul>
+      </div>
+    </div>
+
+    <h2>5. File API — local preview</h2>
+    <label for="photo">Choose a photo</label>
+    <input type="file" id="photo" name="photo" accept="image/*">
+    <p><img id="preview" src="../../../assets/images/placeholder-800x500.jpg" alt="Preview of the selected photo" hidden></p>
+  </main>
+
+  <script type="module">
+    // 1. Canvas
+    const canvas = document.querySelector("#chart");
+    const ratio = window.devicePixelRatio || 1;
+    canvas.width = 320 * ratio;
+    canvas.height = 200 * ratio;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(ratio, ratio);
+    const data = [["Jan", 2], ["Feb", 3.5], ["Mar", 5]];
+    data.forEach(([label, value], i) => {
+      const h = value * 30;
+      ctx.fillStyle = "#e44d26";
+      ctx.fillRect(40 + i * 90, 170 - h, 60, h);
+      ctx.fillStyle = "#222";
+      ctx.font = "14px system-ui";
+      ctx.fillText(label, 55 + i * 90, 190);
+    });
+
+    // 2. localStorage
+    const nameInput = document.querySelector("#name");
+    try { nameInput.value = localStorage.getItem("html-cracker-name") ?? ""; } catch { /* storage blocked */ }
+    nameInput.addEventListener("input", () => {
+      try { localStorage.setItem("html-cracker-name", nameInput.value); } catch { /* quota or blocked */ }
+    });
+
+    // 3. Geolocation
+    const where = document.querySelector("#where");
+    document.querySelector("#locate").addEventListener("click", () => {
+      if (!("geolocation" in navigator)) { where.textContent = "Geolocation isn't available."; return; }
+      where.textContent = "Locating…";
+      navigator.geolocation.getCurrentPosition(
+        (pos) => { where.textContent = `${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)} (±${Math.round(pos.coords.accuracy)} m)`; },
+        (err) => { where.textContent = `Couldn't get location: ${err.message}`; },
+        { timeout: 10000 }
+      );
+    });
+
+    // 4. Drag and drop + button alternative
+    const todo = document.querySelector("#todo");
+    const done = document.querySelector("#done");
+    const moveTask = (li) => {
+      const target = li.parentElement === todo ? done : todo;
+      target.append(li);
+    };
+    document.querySelectorAll("[draggable]").forEach((li) => {
+      li.addEventListener("dragstart", (e) => e.dataTransfer.setData("text/plain", li.id));
+    });
+    [todo, done].forEach((zone) => {
+      zone.addEventListener("dragover", (e) => e.preventDefault()); // required to allow a drop
+      zone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        zone.append(document.getElementById(e.dataTransfer.getData("text/plain")));
+      });
+    });
+    document.querySelectorAll(".move").forEach((btn) => {
+      btn.addEventListener("click", () => moveTask(btn.closest("li")));
+    });
+
+    // 5. File API
+    const photo = document.querySelector("#photo");
+    const preview = document.querySelector("#preview");
+    photo.addEventListener("change", () => {
+      const file = photo.files[0];
+      if (!file) return;
+      preview.src = URL.createObjectURL(file);
+      preview.hidden = false;
+      preview.addEventListener("load", () => URL.revokeObjectURL(preview.src), { once: true });
+    });
+  </script>
+</body>
+</html>

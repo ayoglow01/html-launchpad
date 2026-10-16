@@ -1,0 +1,14 @@
+WEBVTT
+
+NOTE
+Captions (kind="captions") include speech AND meaningful sounds,
+because they are written for people who cannot hear the audio.
+
+00:00:00.000 --> 00:00:02.500
+[Steady 440 Hz tone begins]
+
+00:00:02.500 --> 00:00:05.000
+NARRATOR: This is a test pattern with a counter.
+
+00:00:05.000 --> 00:00:08.000
+[Tone continues, then stops]

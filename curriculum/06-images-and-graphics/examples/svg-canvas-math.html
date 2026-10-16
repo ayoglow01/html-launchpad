@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SVG, canvas and MathML — html-cracker</title>
+  <style>
+    .heart { color: crimson; } /* the SVG uses currentColor */
+  </style>
+</head>
+<body>
+  <h1>SVG, canvas and MathML</h1>
+
+  <h2>Inline SVG (informative)</h2>
+  <p class="heart">
+    <svg viewBox="0 0 24 24" width="48" height="48" role="img" aria-labelledby="heart-title">
+      <title id="heart-title">Favourite</title>
+      <path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z" fill="currentColor"/>
+    </svg>
+    The heart uses <code>fill="currentColor"</code>, so it inherits this paragraph's text colour.
+  </p>
+
+  <h2>Inline SVG (decorative, next to text)</h2>
+  <button type="button">
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+      <path d="M4 12h16" stroke="currentColor" stroke-width="3" />
+    </svg>
+    Remove item
+  </button>
+
+  <h2>Canvas (needs JavaScript)</h2>
+  <canvas id="bars" width="320" height="160">
+    Bar chart: January 120 units, February 180 units, March 260 units.
+  </canvas>
+  <script>
+    const ctx = document.getElementById("bars").getContext("2d");
+    const data = [120, 180, 260];
+    data.forEach((value, i) => {
+      ctx.fillStyle = i === 2 ? "#e44d26" : "#0e405e";
+      ctx.fillRect(30 + i * 95, 150 - value / 2, 60, value / 2);
+    });
+  </script>
+
+  <h2>MathML</h2>
+  <p>The quadratic formula:</p>
+  <math display="block">
+    <mi>x</mi><mo>=</mo>
+    <mfrac>
+      <mrow><mo>−</mo><mi>b</mi><mo>±</mo><msqrt><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></msqrt></mrow>
+      <mrow><mn>2</mn><mi>a</mi></mrow>
+    </mfrac>
+  </math>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Error recovery (intentionally invalid) — html-cracker</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.5; max-width: 70ch; margin: 2rem auto; padding: 0 1rem; }
+    section { border: 1px solid #ccc; padding: .5rem 1rem; margin-block: 1rem; }
+    p { background: #fff3e0; }
+    table > tr { outline: 3px solid red; } /* never matches: the browser inserts <tbody> */
+  </style>
+</head>
+<body>
+  <h1>Error recovery lab</h1>
+  <p>This file is <strong>invalid on purpose</strong>. Compare View Source (Ctrl+U) with the Elements panel (F12) for each section, then run it through <a href="https://validator.w3.org/nu/">validator.w3.org/nu</a>.</p>
+
+  <section>
+    <h2>1. Block inside a paragraph</h2>
+    <p>Text before <div>a div</div> text after.</p>
+    <!-- DOM: <p>Text before </p><div>a div</div> text after.<p></p> -->
+  </section>
+
+  <section>
+    <h2>2. Table without tbody</h2>
+    <table>
+      <tr><td>The browser inserts &lt;tbody&gt; — the red outline rule never matches.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. Misnested inline elements</h2>
+    <p><b>bold <i>bold italic</b> italic?</i></p>
+  </section>
+
+  <section>
+    <h2>4. Nested forms</h2>
+    <form action="outer.html">
+      <form action="inner.html">
+        <label for="q">Search</label>
+        <input type="text" id="q" name="q">
+        <button type="submit">Go</button>
+      </form>
+    </form>
+    <!-- Inner <form> start tag is dropped: submitting goes to outer.html -->
+  </section>
+
+  <section>
+    <h2>5. Duplicate id</h2>
+    <label for="email">Email (click me)</label>
+    <input type="email" id="email" name="email-1">
+    <label for="email">Backup email (click me)</label>
+    <input type="email" id="email" name="email-2">
+    <!-- Both labels focus the FIRST input -->
+  </section>
+
+  <section>
+    <h2>6. "Self-closing" div</h2>
+    <div class="empty"/>
+    <p>This paragraph ends up INSIDE the div above. Check the Elements panel.</p>
+  </section>
+
+  <section>
+    <h2>7. Missing quote</h2>
+    <img src="../../../assets/images/avatar.jpg" alt="Avatar width="100" height="100">
+    <p>The alt attribute swallowed width and height. The image renders at full size.</p>
+  </section>
+</body>
+</html>

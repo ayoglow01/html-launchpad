@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paths playground — html-cracker</title>
+</head>
+<body>
+  <header>
+    <img src="../../../assets/images/logo.svg" alt="html-cracker" width="240" height="60">
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="pages/about.html">About (into a subfolder)</a></li>
+        <li><a href="pages/team/members.html">Team (two folders down)</a></li>
+        <li><a href="#contact">Contact (fragment on this page)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Paths playground</h1>
+    <p>This folder is a tiny website. Follow every link, then open each file in your editor and read the <code>href</code> values.</p>
+
+    <h2>Folder structure</h2>
+    <pre>examples/
+├── index.html            ← you are here
+├── files/
+│   └── sample-notes.txt
+└── pages/
+    ├── about.html
+    └── team/
+        └── members.html</pre>
+
+    <h2>Link types</h2>
+    <ul>
+      <li>Absolute (external): <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a">MDN reference for the a element</a></li>
+      <li>Download (same-origin only): <a href="files/sample-notes.txt" download="html-cracker-notes.txt">Download sample notes (TXT, 1 KB)</a></li>
+      <li>Fragment on another page: <a href="pages/about.html#history">Our history section</a></li>
+      <li>New tab, announced: <a href="https://www.theodinproject.com/lessons/foundations-links-and-images" target="_blank" rel="noopener">The Odin Project: Links and Images (opens in new tab)</a></li>
+    </ul>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email <a href="mailto:hello@example.com?subject=Paths%20playground">hello@example.com</a> or call <a href="tel:+2348000000000">+234&nbsp;800&nbsp;000&nbsp;0000</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="#top">Back to top</a></p>
+  </footer>
+</body>
+</html>

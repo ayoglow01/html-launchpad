@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web components and templates — html-cracker</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.5; max-width: 65ch; margin: 2rem auto; padding: 0 1rem; }
+    /* Page CSS: does NOT reach h3 inside the shadow root… */
+    h3 { color: crimson; }
+    /* …but custom properties and ::part() do. */
+    user-card { --card-accent: #e44d26; }
+    user-card::part(role) { font-style: italic; }
+    user-card:not(:defined) { visibility: hidden; }
+    .products { padding: 0; list-style: none; display: grid; gap: .5rem; }
+    .product { display: flex; gap: 1rem; align-items: center; border: 1px solid #ddd; padding: .5rem; }
+    .product img { width: 80px; height: 50px; object-fit: cover; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Web components and templates</h1>
+
+    <h2>1. template + cloneNode</h2>
+    <template id="product-row">
+      <li class="product">
+        <img src="../../../assets/images/placeholder-800x500.jpg" alt="" width="80" height="50"> <!-- replaced by script; src is required and src="" is invalid -->
+        <div>
+          <h3 class="name">Product name</h3>
+          <p class="price"></p>
+        </div>
+      </li>
+    </template>
+    <ul class="products" id="products"></ul>
+
+    <h2>2. Custom element with shadow DOM and slots</h2>
+    <user-card>
+      <span slot="name">Chiamaka Obi</span>
+      <p>Frontend developer in Enugu. This paragraph is light DOM, slotted into the card.</p>
+    </user-card>
+    <user-card>
+      <p>No name slot provided, so the fallback text shows.</p>
+    </user-card>
+
+    <h2>3. Declarative shadow DOM (no JavaScript needed)</h2>
+    <info-box>
+      <template shadowrootmode="open">
+        <style>
+          :host { display: block; padding: 1rem; border-inline-start: 4px solid #0e405e; background: #f4f6f8; }
+        </style>
+        <strong>Note:</strong>
+        <slot></slot>
+      </template>
+      <p>This box was encapsulated by the HTML parser before any script ran.</p>
+    </info-box>
+
+    <h2>4. Observed attributes</h2>
+    <price-tag amount="12500"></price-tag>
+    <button type="button" id="raise">Raise price</button>
+  </main>
+
+  <script type="module">
+    // 1. Template
+    const template = document.querySelector("#product-row");
+    const list = document.querySelector("#products");
+    const items = [
+      { name: "Project one", price: "₦8,500", img: "../../../assets/images/project-one.jpg" },
+      { name: "Project two", price: "₦12,000", img: "../../../assets/images/project-two.jpg" }
+    ];
+    for (const item of items) {
+      const row = template.content.cloneNode(true);
+      row.querySelector(".name").textContent = item.name;
+      row.querySelector(".price").textContent = item.price;
+      row.querySelector("img").src = item.img;
+      list.append(row);
+    }
+
+    // 2. Custom element with shadow DOM
+    class UserCard extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = `
+          <style>
+            :host { display: block; border: 1px solid #ccc; border-inline-start: 6px solid var(--card-accent, gray); border-radius: 8px; padding: 1rem; margin-block: 1rem; }
+            h3 { margin: 0; color: #0e405e; }
+          </style>
+          <h3><slot name="name">Anonymous</slot></h3>
+          <p part="role">Member</p>
+          <slot></slot>
+        `;
+      }
+    }
+    customElements.define("user-card", UserCard);
+
+    // 4. Observed attributes
+    class PriceTag extends HTMLElement {
+      static observedAttributes = ["amount"];
+      connectedCallback() { this.render(); }
+      attributeChangedCallback() { this.render(); }
+      render() {
+        const amount = Number(this.getAttribute("amount") || 0);
+        this.textContent = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(amount);
+      }
+    }
+    customElements.define("price-tag", PriceTag);
+
+    document.querySelector("#raise").addEventListener("click", () => {
+      const tag = document.querySelector("price-tag");
+      tag.setAttribute("amount", Number(tag.getAttribute("amount")) + 500);
+    });
+  </script>
+</body>
+</html>

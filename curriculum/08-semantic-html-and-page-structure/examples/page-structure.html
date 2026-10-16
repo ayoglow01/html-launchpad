@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page structure — html-cracker</title>
+  <style>
+    /* The only CSS here makes the skip link visible on focus. */
+    .skip-link { position: absolute; left: -9999px; }
+    .skip-link:focus { left: 1rem; top: 1rem; background: #fff; padding: .5rem; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <a href="page-structure.html"><img src="../../../assets/images/logo.svg" alt="html-cracker home" width="240" height="60"></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="page-structure.html" aria-current="page">Blog</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <search>
+      <form action="https://developer.mozilla.org/en-US/search" method="get">
+        <label for="q">Search MDN</label>
+        <input id="q" name="q" type="search">
+        <button type="submit">Search</button>
+      </form>
+    </search>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <hgroup>
+      <h1>The html-cracker blog</h1>
+      <p>Notes on writing meaningful markup.</p>
+    </hgroup>
+
+    <nav aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../../../README.md">Home</a></li>
+        <li><a href="page-structure.html" aria-current="page">Blog</a></li>
+      </ol>
+    </nav>
+
+    <section aria-labelledby="latest-heading">
+      <h2 id="latest-heading">Latest posts</h2>
+
+      <article>
+        <header>
+          <h3>Why your page needs exactly one main</h3>
+          <p>By Ada Okafor · <time datetime="2026-10-12">12 October 2026</time></p>
+        </header>
+        <p>Landmarks let screen-reader users jump to the content they came for…</p>
+        <section aria-labelledby="comments-1">
+          <h4 id="comments-1">Comments</h4>
+          <article>
+            <p><b>Tunde</b>: This finally made skip links click for me.</p>
+            <footer><time datetime="2026-10-13T09:15+01:00">13 Oct, 9:15 am</time></footer>
+          </article>
+        </section>
+      </article>
+
+      <article>
+        <header>
+          <h3>Section, article, or div?</h3>
+          <p>By Bisi Ade · <time datetime="2026-10-05">5 October 2026</time></p>
+        </header>
+        <p>Ask whether the content would make sense on its own…</p>
+      </article>
+    </section>
+
+    <aside aria-labelledby="related-heading">
+      <h2 id="related-heading">Related reading</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents">MDN: Structuring documents</a></li>
+      </ul>
+    </aside>
+
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About this blog</h2>
+      <p>Written by learners, for learners.</p>
+    </section>
+  </main>
+
+  <footer>
+    <address id="contact">Write to <a href="mailto:blog@example.com">blog@example.com</a>.</address>
+    <p><small>&copy; 2026 html-cracker</small></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inspect the DOM tree — html-cracker</title>
+</head>
+<body>
+  <h1>Inspect this page</h1>
+  <section id="about">
+    <h2>About me</h2>
+    <p>I build <em>accessible</em> web applications.</p>
+  </section>
+  <section id="tasks">
+    <h2>Your tasks</h2>
+    <ol>
+      <li>Open DevTools and expand <code>section#about</code>. Identify parent, children, siblings, and a descendant.</li>
+      <li>In the Console, run <code>document.querySelector("#about").childNodes.length</code>, then <code>.children.length</code>. Why do they differ? (Hint: whitespace text nodes.)</li>
+      <li>In the Elements panel, double-click the word "accessible" and change it. View Source does not change. Why?</li>
+    </ol>
+  </section>
+</body>
+</html>

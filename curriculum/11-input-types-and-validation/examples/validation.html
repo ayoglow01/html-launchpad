@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Native validation — html-cracker</title>
+  <style>
+    /* :user-invalid waits for interaction; compare with :invalid by swapping them. */
+    input:user-invalid, select:user-invalid { outline: 3px solid #b00020; }
+    input:user-valid { outline: 3px solid #1b7f3b; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Native validation</h1>
+    <form action="validation.html" method="get">
+      <p>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required minlength="3" maxlength="20"
+               pattern="[A-Za-z0-9_]+" autocapitalize="off" spellcheck="false" aria-describedby="username-hint">
+        <span id="username-hint">3–20 characters: letters, numbers, underscores.</span>
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email" aria-describedby="email-hint">
+        <span id="email-hint">Try <kbd>a@b</kbd> — the browser accepts it. Your server should not.</span>
+      </p>
+      <p>
+        <label for="otp">6-digit code</label>
+        <input id="otp" name="otp" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" required>
+      </p>
+      <p>
+        <label for="qty">Quantity (1–5)</label>
+        <input id="qty" name="qty" type="number" min="1" max="5" value="1" required>
+      </p>
+      <p>
+        <label for="confirm">Type CONFIRM to continue</label>
+        <input id="confirm" name="confirm" type="text" required aria-describedby="confirm-hint">
+        <span id="confirm-hint">Uses setCustomValidity() for a custom rule.</span>
+      </p>
+      <fieldset>
+        <legend>Plan (radio group: required on one radio covers the group)</legend>
+        <label><input type="radio" name="plan" value="basic" required> Basic</label>
+        <label><input type="radio" name="plan" value="pro"> Pro</label>
+      </fieldset>
+      <p>
+        <label for="strength">Password strength (meter)</label>
+        <meter id="strength" min="0" max="4" low="2" high="3" optimum="4" value="1">weak</meter>
+      </p>
+      <p>
+        <label><input type="checkbox" name="terms" value="accepted" required> I accept the terms</label>
+      </p>
+      <button type="submit">Submit</button>
+      <button type="submit" formnovalidate>Submit without validation</button>
+    </form>
+  </main>
+  <script>
+    const confirmField = document.getElementById("confirm");
+    confirmField.addEventListener("input", () => {
+      confirmField.setCustomValidity(
+        confirmField.value === "CONFIRM" ? "" : "Type CONFIRM in capital letters."
+      );
+    });
+  </script>
+</body>
+</html>

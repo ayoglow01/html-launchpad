@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <line x1="40" y1="170" x2="300" y2="170" stroke="#333"/>
+  <line x1="40" y1="20" x2="40" y2="170" stroke="#333"/>
+  <rect x="70" y="110" width="50" height="60" fill="#0e405e"/>
+  <rect x="145" y="80" width="50" height="90" fill="#0e405e"/>
+  <rect x="220" y="40" width="50" height="130" fill="#e44d26"/>
+  <text x="95" y="188" font-size="12" text-anchor="middle" font-family="Arial">Jan</text>
+  <text x="170" y="188" font-size="12" text-anchor="middle" font-family="Arial">Feb</text>
+  <text x="245" y="188" font-size="12" text-anchor="middle" font-family="Arial">Mar</text>
+</svg>

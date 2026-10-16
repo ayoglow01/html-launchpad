@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive elements — html-cracker</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.5; max-width: 65ch; margin: 2rem auto; padding: 0 1rem; }
+    dialog::backdrop { background: rgb(0 0 0 / 0.5); }
+    [popover] { padding: 1rem; border: 1px solid #0e405e; border-radius: .5rem; max-width: 30ch; }
+    [hidden] { display: none !important; }
+    summary { cursor: pointer; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Interactive elements</h1>
+
+    <h2>1. Disclosure</h2>
+    <details>
+      <summary>What is the refund policy?</summary>
+      <p>Full refund within 14 days of purchase.</p>
+    </details>
+
+    <h2>2. Exclusive accordion (same <code>name</code>)</h2>
+    <details name="faq" open>
+      <summary>Shipping</summary>
+      <p>2–4 working days within Lagos; 5–7 days elsewhere in Nigeria.</p>
+    </details>
+    <details name="faq">
+      <summary>Payment</summary>
+      <p>Card, bank transfer, or USSD.</p>
+    </details>
+    <details name="faq">
+      <summary>Returns</summary>
+      <p>Within 14 days, unused and in original packaging.</p>
+    </details>
+
+    <h2>3. Modal dialog with a return value</h2>
+    <button type="button" id="open-delete">Delete account</button>
+    <p role="status" id="dialog-result"></p>
+
+    <dialog id="confirm-delete" aria-labelledby="delete-title">
+      <h2 id="delete-title">Delete your account?</h2>
+      <p>This can't be undone.</p>
+      <form method="dialog">
+        <button type="submit" value="cancel" autofocus>Cancel</button>
+        <button type="submit" value="delete">Delete</button>
+      </form>
+    </dialog>
+
+    <h2>4. Popover — zero JavaScript</h2>
+    <p>
+      <label for="bvn">BVN</label>
+      <input type="text" id="bvn" name="bvn" inputmode="numeric" maxlength="11" autocomplete="off">
+      <button type="button" popovertarget="bvn-help">What's a BVN?</button>
+    </p>
+    <div id="bvn-help" popover>
+      Your Bank Verification Number: an 11-digit number issued through your bank.
+    </div>
+
+    <h3>Manual popover (no light dismiss)</h3>
+    <button type="button" popovertarget="toast" popovertargetaction="show">Show toast</button>
+    <div id="toast" popover="manual">
+      Saved.
+      <button type="button" popovertarget="toast" popovertargetaction="hide">Dismiss</button>
+    </div>
+
+    <h2>5. Invoker commands (Baseline 2025)</h2>
+    <button type="button" commandfor="terms" command="show-modal" id="terms-button">Read terms</button>
+    <dialog id="terms" aria-labelledby="terms-title">
+      <h2 id="terms-title">Terms</h2>
+      <p>Be kind. Write valid HTML.</p>
+      <button type="button" commandfor="terms" command="close">Close</button>
+    </dialog>
+
+    <h2>6. hidden="until-found"</h2>
+    <p>Press Ctrl+F (Cmd+F) and search for <q>jollof</q>. Supporting browsers reveal the hidden text.</p>
+    <div hidden="until-found" id="secret">
+      <p>The great jollof debate continues.</p>
+    </div>
+  </main>
+
+  <script>
+    const dialog = document.getElementById("confirm-delete");
+    const result = document.getElementById("dialog-result");
+    document.getElementById("open-delete").addEventListener("click", () => {
+      dialog.returnValue = "";
+      dialog.showModal();
+    });
+    dialog.addEventListener("close", () => {
+      result.textContent = "returnValue: " + (dialog.returnValue || "(closed with Esc)");
+    });
+
+    // Fallback for browsers without invoker commands.
+    if (!("command" in HTMLButtonElement.prototype)) {
+      const terms = document.getElementById("terms");
+      document.getElementById("terms-button").addEventListener("click", () => terms.showModal());
+      terms.querySelector("button").addEventListener("click", () => terms.close());
+    }
+  </script>
+</body>
+</html>

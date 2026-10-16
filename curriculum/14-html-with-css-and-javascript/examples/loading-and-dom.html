@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Script loading and the DOM — html-cracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Internal CSS: comes AFTER the external file, so it wins at equal specificity. */
+    .note { border-left: 4px solid #e44d26; }
+  </style>
+  <!-- defer: downloads now, runs after parsing, in order. Open DevTools > Console. -->
+  <script src="js/first.js" defer></script>
+  <script src="js/second.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Script loading and the DOM</h1>
+    <p class="note">Open the Console: the deferred scripts log in order, after the DOM is complete.</p>
+
+    <h2>dataset demo</h2>
+    <button type="button" id="like" data-post-id="42" data-liked="false" aria-pressed="false">Like</button>
+    <p id="count">0 likes</p>
+
+    <noscript>
+      <p>JavaScript is off, so the Like button does nothing. Everything else on this page still works.</p>
+    </noscript>
+  </main>
+</body>
+</html>

@@ -1,0 +1,3 @@
+html-cracker sample download
+
+If the browser saved this file instead of displaying it, the download attribute worked.

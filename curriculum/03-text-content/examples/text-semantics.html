@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text semantics reference — html-cracker</title>
+</head>
+
+<body>
+  <h1>Text semantics reference</h1>
+
+  <h2>Importance and emphasis</h2>
+  <p><strong>Warning:</strong> saving will overwrite the previous version.</p>
+  <p>I <em>did</em> send the email. <!-- stress changes the meaning --></p>
+  <p>The review praised the <b>Aurora X2</b> for its battery life.</p>
+  <p>She had a strange feeling of <i lang="fr">déjà vu</i>.</p>
+  <p>Search results for “semantics”: HTML <mark>semantics</mark> explained.</p>
+  <p>Spell-check flagged: <u>teh</u></p>
+  <p>Ticket price: <s>₦15,000</s> ₦10,000 (early bird).</p>
+  <p>Venue: <del datetime="2026-09-30">Hall A</del> <ins datetime="2026-10-01">Hall C</ins></p>
+  <p>Water is H<sub>2</sub>O. The area is <var>r</var><sup>2</sup>π.</p>
+
+  <h2>Quotations</h2>
+  <figure>
+    <blockquote cite="https://www.w3.org/WAI/fundamentals/accessibility-intro/">
+      <p>The Web is fundamentally designed to work for all people, whatever their hardware, software, language,
+        location, or ability.</p>
+    </blockquote>
+    <figcaption>W3C Web Accessibility Initiative, <cite>Introduction to Web Accessibility</cite></figcaption>
+  </figure>
+  <p>My mentor always said <q>ship it, then improve it</q>.</p>
+
+  <h2>Definitions and abbreviations</h2>
+  <p><dfn>Semantic HTML</dfn> means choosing elements for their meaning, not their appearance.</p>
+  <p>The World Wide Web Consortium (<abbr title="World Wide Web Consortium">W3C</abbr>) publishes accessibility
+    guidelines.</p>
+
+  <h2>Computer text</h2>
+  <p>Save with <kbd>Ctrl</kbd> + <kbd>S</kbd>. The terminal prints <samp>Server running on port 8000</samp>.</p>
+  <pre><code>&lt;p class="intro"&gt;Hello &amp; welcome&lt;/p&gt;</code></pre>
+
+  <h2>Dates and data</h2>
+  <p>Workshop: <time datetime="2026-10-14T18:30+01:00">14 October 2026, 6:30 pm WAT</time>, lasting <time
+      datetime="PT2H">two hours</time>.</p>
+  <p>Featured: <data value="SKU-4471">Wireless keyboard</data></p>
+
+  <hr>
+
+  <h2>Characters</h2>
+  <p>Escaped: 5 &lt; 10 &amp;&amp; 10 &gt; 5. Typed directly thanks to UTF-8: © ₦ € → 🙂</p>
+  <p>Keep together: 10&nbsp;km · Dr.&nbsp;Adebayo</p>
+
+  <footer>
+    <address>Contact the author: <a href="mailto:author@example.com">author@example.com</a></address>
+    <p><small>&copy; 2026 html-cracker. MIT licensed.</small></p>
+  </footer>
+</body>
+
+</html>

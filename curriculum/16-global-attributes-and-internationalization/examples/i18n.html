@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global attributes and internationalisation — html-cracker</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.6; max-width: 65ch; margin: 2rem auto; padding: 0 1rem; }
+    .rtl-box { border: 1px solid #ccc; padding: 1rem; padding-inline-start: 2rem; border-inline-start: 4px solid #e44d26; }
+    [contenteditable] { border: 1px dashed #0e405e; padding: .5rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Global attributes and internationalisation</h1>
+
+    <h2>1. Boolean vs enumerated</h2>
+    <!-- Invalid on purpose: boolean attributes take no value. Shown to prove the point. -->
+    <p>
+      <!-- [html-validate-disable-next attribute-boolean-style, attribute-allowed-values] -->
+      <button type="button" disabled="false">disabled="false" — still disabled</button>
+    </p>
+    <p contenteditable="false">contenteditable="false" — not editable.</p>
+    <p contenteditable="true" spellcheck="true">contenteditable="true" — click and type here. Mispeled wurds get underlined.</p>
+    <p contenteditable="true" spellcheck="false">spellcheck="false" — mispeled wurds are ignored.</p>
+
+    <h2>2. Language of parts</h2>
+    <p>She greeted us with <span lang="yo">Ẹ kú àárọ̀</span>, which means "good morning".</p>
+    <p>The French motto is <q lang="fr">Liberté, égalité, fraternité</q>. Notice how the quotation marks can follow the quote's language.</p>
+    <p><span lang="pcm">How far? Wetin dey happen?</span> — Nigerian Pidgin.</p>
+
+    <h2>3. Direction</h2>
+    <div class="rtl-box" dir="rtl" lang="ar">
+      <p>مرحبا بكم في دورة HTML.</p>
+    </div>
+    <p>The logical CSS border sits on the right because the box is RTL.</p>
+
+    <h3>Isolating usernames with bdi</h3>
+    <ul>
+      <li><bdi>إيان</bdi>: 3 posts</li>
+      <li><bdi>Chiamaka</bdi>: 5 posts</li>
+    </ul>
+    <h3>Without bdi (compare the order)</h3>
+    <ul>
+      <li>إيان: 3 posts</li>
+    </ul>
+
+    <h3>Overriding with bdo</h3>
+    <p><bdo dir="rtl">This sentence is forced right-to-left.</bdo></p>
+
+    <h3>dir="auto" on user input</h3>
+    <form action="i18n.html" method="get">
+      <label for="comment">Comment (try Arabic text)</label>
+      <input type="text" id="comment" name="comment" dir="auto" dirname="comment.dir">
+      <button type="submit">Send</button>
+    </form>
+
+    <h2>4. translate="no"</h2>
+    <p>Install <code translate="no">html-validate</code> and test <span translate="no">html-cracker</span>. Run your browser's translate feature: these stay unchanged.</p>
+
+    <h2>5. Machine-readable values</h2>
+    <p>Fee: <data value="12500">₦12,500</data>, due <time datetime="2026-10-31">31 October 2026</time>.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team — Paths playground</title>
+</head>
+<body>
+  <header>
+    <img src="../../../../../assets/images/logo.svg" alt="html-cracker" width="240" height="60">
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../../index.html">Home (up two folders)</a></li>
+        <li><a href="../about.html">About (up one folder)</a></li>
+        <li><a href="members.html" aria-current="page">Team</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Team</h1>
+    <p>Two folders deep: <code>pages/team/</code>. Count the <code>../</code> in each link.</p>
+    <p>Try it: change <code>../../index.html</code> to <code>/index.html</code>, open this file by double-clicking, and click Home. It breaks — root-relative paths point to the root of your disk on <code>file://</code>.</p>
+  </main>
+</body>
+</html>

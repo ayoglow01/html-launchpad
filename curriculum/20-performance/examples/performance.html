@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Performance patterns — html-cracker</title>
+
+  <!-- Preload the LCP image (only needed if it's discovered late; shown here for reference). -->
+  <link rel="preload" href="../../../assets/images/hero-1200.webp" as="image" type="image/webp"
+        imagesrcset="../../../assets/images/hero-480.webp 480w, ../../../assets/images/hero-800.webp 800w, ../../../assets/images/hero-1200.webp 1200w"
+        imagesizes="100vw" fetchpriority="high">
+
+  <!-- Print styles: downloaded at low priority, never block rendering. -->
+  <link rel="stylesheet" href="print.css" media="print">
+
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.5; margin: 0; }
+    main { max-width: 65ch; margin: 0 auto; padding: 1rem; }
+    img, iframe { max-width: 100%; height: auto; }
+    .spacer { height: 120vh; display: grid; place-items: center; background: #f4f6f8; }
+  </style>
+
+  <script src="perf.js" defer></script>
+</head>
+<body>
+  <!-- LCP image: real <img>, eager, high priority, explicit dimensions, responsive. -->
+  <picture>
+    <source type="image/webp"
+            srcset="../../../assets/images/hero-480.webp 480w, ../../../assets/images/hero-800.webp 800w, ../../../assets/images/hero-1200.webp 1200w"
+            sizes="100vw">
+    <img src="../../../assets/images/hero-1200.jpg"
+         srcset="../../../assets/images/hero-480.jpg 480w, ../../../assets/images/hero-800.jpg 800w, ../../../assets/images/hero-1200.jpg 1200w"
+         sizes="100vw" width="1200" height="800" fetchpriority="high"
+         alt="Abstract orange and blue gradient banner">
+  </picture>
+
+  <main>
+    <h1>Performance patterns</h1>
+    <p>Open DevTools &gt; Network, throttle to Slow 4G, and reload. Watch which images load immediately and which wait until you scroll.</p>
+    <p id="lcp-report" role="status">LCP: measuring…</p>
+
+    <div class="spacer"><p>Scroll down ↓</p></div>
+
+    <h2>Below the fold: lazy-loaded</h2>
+    <img src="../../../assets/images/project-one.jpg" width="800" height="500" loading="lazy" decoding="async" alt="Project one screenshot placeholder">
+    <img src="../../../assets/images/project-two.jpg" width="800" height="500" loading="lazy" decoding="async" alt="Project two screenshot placeholder">
+
+    <h2>Video that doesn't download until needed</h2>
+    <video controls preload="none" width="640" height="360" poster="../../../assets/images/video-poster.jpg">
+      <source src="../../../assets/media/sample-video.webm" type="video/webm">
+      <source src="../../../assets/media/sample-video.mp4" type="video/mp4">
+      <track kind="captions" src="../../../assets/media/captions-en.vtt" srclang="en" label="English" default>
+      <p>Your browser can't play this video. <a href="../../../assets/media/sample-video.mp4">Download it</a>.</p>
+    </video>
+  </main>
+</body>
+</html>

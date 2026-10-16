@@ -1,0 +1,74 @@
+/* Kola & Co. — reference stylesheet. Kept small on purpose: the HTML carries the meaning. */
+:root {
+  --ink: #1d2733;
+  --brand: #0e405e;
+  --accent: #ffb703;
+  --muted: #4a5763;  /* 7.4:1 on white */
+  --bg: #ffffff;
+  --surface: #f4f6f8;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+img, svg, video, iframe { max-width: 100%; height: auto; }
+a { color: var(--brand); text-underline-offset: 0.15em; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+.site-footer :focus-visible { outline-color: var(--accent); }
+
+.skip-link { position: absolute; left: 1rem; top: -100px; background: var(--brand); color: #fff; padding: .5rem 1rem; z-index: 10; }
+.skip-link:focus { top: 1rem; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.container { width: min(72rem, 100% - 2rem); margin-inline: auto; }
+.site-header { border-bottom: 1px solid #dde3e8; }
+.site-header .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .75rem; }
+.site-nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+.site-nav a { text-decoration: none; padding: .25rem 0; }
+.site-nav a[aria-current="page"] { font-weight: 700; border-bottom: 3px solid var(--accent); }
+
+main { padding-block: 2rem 4rem; }
+.hero { display: grid; gap: 1.5rem; }
+.hero img { border-radius: .75rem; }
+.lead { font-size: 1.25rem; color: var(--muted); }
+.button { display: inline-block; background: var(--brand); color: #fff; padding: .75rem 1.25rem; border-radius: .5rem; text-decoration: none; font-weight: 600; border: 0; font: inherit; cursor: pointer; }
+.button:hover { background: #0a3049; }
+
+.grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); padding: 0; list-style: none; }
+.card { background: var(--surface); border-radius: .75rem; padding: 1.25rem; }
+.card h3 { margin-top: 0; }
+figure { margin: 0; }
+figcaption { color: var(--muted); font-size: .95rem; margin-top: .5rem; }
+blockquote { margin: 0; font-size: 1.2rem; }
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; }
+caption { text-align: start; font-weight: 700; padding-block: .5rem; }
+th, td { text-align: start; padding: .6rem .75rem; border-bottom: 1px solid #dde3e8; }
+thead th { background: var(--surface); }
+
+form { display: grid; gap: 1rem; max-width: 36rem; }
+label, legend { font-weight: 600; }
+input, select, textarea { font: inherit; padding: .6rem; border: 1px solid #7a8691; border-radius: .4rem; width: 100%; }
+fieldset { border: 1px solid #dde3e8; border-radius: .5rem; }
+fieldset label { font-weight: 400; display: flex; gap: .5rem; align-items: center; }
+fieldset input { width: auto; }
+.hint { color: var(--muted); font-size: .95rem; margin: .25rem 0 0; }
+.error { color: #b00020; margin: .25rem 0 0; }
+input:user-invalid, textarea:user-invalid, select:user-invalid { border-color: #b00020; border-width: 2px; }
+
+details { border-bottom: 1px solid #dde3e8; padding-block: .75rem; }
+summary { cursor: pointer; font-weight: 600; }
+
+.site-footer { background: var(--brand); color: #fff; padding-block: 2rem; }
+.site-footer a { color: #fff; }
+.site-footer .container { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+address { font-style: normal; }
+
+@media (min-width: 48rem) {
+  .hero { grid-template-columns: 1fr 1fr; align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}

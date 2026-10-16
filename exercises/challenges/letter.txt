@@ -1,0 +1,38 @@
+Dr. Funmilayo Adeyemi
+Department of Computer Science
+University of Lagos
+Akoka, Yaba
+Lagos 101017
+Tel: +234 803 000 0000
+Email: f.adeyemi@example.edu.ng
+
+14 October 2026
+
+Mr. Chinedu Okafor
+12 Bourdillon Road
+Ikoyi, Lagos
+
+Re: Your application to the Web Development Fellowship 2027
+
+Dear Chinedu,
+
+Thank you for applying to the Web Development Fellowship. I am pleased to tell you that your application has been successful. Congratulations!
+
+The fellowship runs from 11 January 2027 to 30 April 2027. Sessions take place on Tuesdays and Thursdays from 2 pm to 5 pm WAT in Room 204 of the Faculty of Science building.
+
+Before the first session, please:
+
+Complete the online HTML pre-assessment
+Install VS Code and a current browser
+Read the fellowship handbook (attached)
+
+Bring a laptop to every session. Fellows are expected to complete a capstone project, which counts for 40% of the final assessment. As our handbook puts it: "Build in public, ask early, and ship something real."
+
+Please note that the stipend of ₦150,000 per month is paid on the last working day of each month. If you have questions about the HTML, CSS, or JS modules, contact the programme coordinator.
+
+We look forward to welcoming you.
+
+Yours sincerely,
+
+Dr. Funmilayo Adeyemi
+Fellowship Director

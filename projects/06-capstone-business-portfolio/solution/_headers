@@ -1,0 +1,7 @@
+# Netlify / Cloudflare Pages. Header CSP is stronger than the meta tag in each page and adds frame-ancestors.
+/*
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; frame-src https://www.openstreetmap.org; form-action 'self' https://formspree.io; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
